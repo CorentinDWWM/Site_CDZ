@@ -28,10 +28,15 @@ button {
   }
 }
 
-.btn-reverse-primary {
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  background-color: white;
+.btn-secondary {
+  background-color: var(--pink-1);
+  color: black;
+  border: none;
+  &:hover {
+    background-color: var(--primary);
+    border: 1px solid var(--pink-1);
+    color: white;
+  }
 }
 
 .card {

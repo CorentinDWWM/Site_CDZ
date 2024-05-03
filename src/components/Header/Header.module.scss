@@ -6,6 +6,10 @@
   padding: 20px;
   height: 100px;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
 
   .logo {
     background: center / contain no-repeat url(../../assets/img/LogoCDZ.png);
@@ -35,6 +39,15 @@
     color: black;
     text-align: center;
     padding: 10px 20px 10px 20px;
+    height: 47px;
+    width: 87px;
+    &:hover {
+      height: 47px;
+      width: 87px;
+      border: 1px solid var(--pink-1);
+      background-color: var(--primary);
+      color: white;
+    }
   }
 
   .trait {
@@ -70,4 +83,8 @@
       margin-right: 30px;
     }
   }
+}
+
+.btnNav {
+  cursor: pointer;
 }
