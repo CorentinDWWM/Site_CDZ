@@ -1,2 +1,1 @@
-export const url =
-  "https://cdz-backend-idwxkawh6-corentindwwms-projects.vercel.app";
+export const url = "https://cdz-backend.vercel.app/";

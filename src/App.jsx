@@ -4,7 +4,7 @@ import Accueil from "./Pages/Accueil/Accueil";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Login from "./components/Form/Login";
-import url from "./url";
+import { url } from "./url";
 
 function App() {
   const [formPage, setFormPage] = useState(false);
