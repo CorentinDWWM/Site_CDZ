@@ -1,13 +1,14 @@
 import styles from "./Header.module.scss";
 import { useState } from "react";
 import HeaderMobile from "./components/HeaderMobile";
+import { NavLink } from "react-router-dom";
 
 export default function Header({ handleFormPage, handleHomePage }) {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
     <header className={`d-flex align-items-center ${styles.header}`}>
-      <div onClick={handleHomePage} className={`${styles.logo}`}></div>
+      <NavLink to="/" className={`${styles.logo}`}></NavLink>
       <nav className={`d-flex jc-around align-items-center ${styles.navBar}`}>
         <p className={`${styles.docs}`}>
           <a
@@ -19,15 +20,21 @@ export default function Header({ handleFormPage, handleHomePage }) {
           </a>
         </p>
         <div className={`${styles.trait}`}></div>
-        <p className={`${styles.btnNav}`}>Vidéos</p>
+        <NavLink to="/videos" className={`${styles.btnNav}`}>
+          Vidéos
+        </NavLink>
         <div className={`${styles.trait}`}></div>
-        <p className={`${styles.btnNav}`}>Boutique</p>
+        <NavLink to="/boutique" className={`${styles.btnNav}`}>
+          Boutique
+        </NavLink>
         <div className={`${styles.trait}`}></div>
-        <p className={`${styles.btnNav}`}>Contact</p>
+        <NavLink to="/contact" className={`${styles.btnNav}`}>
+          Contact
+        </NavLink>
         <div className={`${styles.trait}`}></div>
-        <p onClick={handleFormPage} className={`${styles.btnNav}`}>
+        <NavLink to="/login" className={`${styles.btnNav}`}>
           Connexion
-        </p>
+        </NavLink>
       </nav>
       <i
         onClick={() => setShowMenu(true)}

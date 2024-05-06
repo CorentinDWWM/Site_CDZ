@@ -5,6 +5,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Login from "./components/Form/Login";
 import { url } from "./url";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [formPage, setFormPage] = useState(false);
@@ -35,31 +36,12 @@ function App() {
   }
   return (
     <div className={`d-flex flex-column ${styles.page}`}>
-      <>
-        <Header
-          handleFormPage={handleFormPage}
-          handleHomePage={handleHomePage}
-        />
-        <div className={`${styles.vide}`}>
-          <div style={{ height: "100px" }}></div>
-          {formPage === true ? (
-            mdpOublie === true ? (
-              <MdpPerdu />
-            ) : (
-              <Login handleToggleMdpOublie={handleToggleMdpOublie} />
-            )
-          ) : (
-            /* ) : VideosPage === true ? ( */
-            /* <Videos /> */
-            /* ) : BoutiquePage === true ? ( */
-            /* <Boutique /> */
-            /* ) : ContactPage === true ? ( */
-            /* <Contact /> */
-            <Accueil />
-          )}
-          <Footer />
-        </div>
-      </>
+      <Header />
+      <div style={{ height: "100px" }}></div>
+      <div className="flex-fill">
+        <Outlet />
+      </div>
+      <Footer />
     </div>
   );
 }
