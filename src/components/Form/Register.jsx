@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as yup from "yup";
 import { appendErrors, useFieldArray, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import styles from "./Register.module.scss";
 
 export default function Register() {
   const [techFromApi, setTechFromApi] = useState([]);
@@ -94,8 +95,9 @@ export default function Register() {
     }
   }
   return (
-    <div className="d-flex center container">
-      <form onSubmit={handleSubmit(submit)}>
+    <div className={`d-flex center flex-fill ${styles.formPage}`}>
+      <form onSubmit={handleSubmit(submit)} className={`${styles.loginForm}`}>
+        <p>Formulaire d'inscription</p>
         <div className="d-flex flex-column mb-10">
           <label htmlFor="username" className="mb-10">
             Pseudo
@@ -162,47 +164,14 @@ export default function Register() {
           </label>
           {errors.rgpd && <p className="text-error">{errors.rgpd.message}</p>}
         </div>
-        <div className="d-flex flex-column mb-20">
-          <label htmlFor="techno" className="d-flex center mb-10">
-            <span className="flex-fill mr-10">Technologies</span>
-            <button
-              type="button"
-              className="btn btn-reverse-primary"
-              onClick={addTechno}
-            >
-              +
-            </button>
-          </label>
-          <ul>
-            {fields.map((tech, index) => (
-              <div key={tech.id}>
-                <li className="mb-10">
-                  <input
-                    {...register(`technos[${index}].value`)}
-                    type="text"
-                    className="flex-fill mr-15 mb-20"
-                  />
-                  <button
-                    onClick={() => deleteTechno(index)}
-                    type="button"
-                    className="btn btn-primary"
-                  >
-                    -
-                  </button>
-                </li>
-                {errors.technos?.length && errors.technos[index]?.value && (
-                  <p>{errors.technos[index].value.message}</p>
-                )}
-              </div>
-            ))}
-          </ul>
+        <div className={`${styles.divFin}`}>
+          <button className={`btn btn-secondary ${styles.btnInscription}`}>
+            Inscription
+          </button>
+          <p className={`${styles.clickable}`}>Mot de passe oublié ?</p>
         </div>
-        <button className="btn btn-primary">Submit</button>
+        <hr />
       </form>
-      <ul className="my-30">
-        {techFromApi.length &&
-          techFromApi.map((t, i) => <li key={t.id}>{t.value}</li>)}
-      </ul>
     </div>
   );
 }

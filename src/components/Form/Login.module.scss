@@ -1,5 +1,7 @@
+@use "../../assets/styles/mixin" as mixin;
+
 .formPage {
-  height: 100%;
+  // height: 100%;
   position: relative;
 
   .loginForm {
@@ -9,6 +11,10 @@
     // height: 600px;
     color: white;
     align-items: center;
+
+    @include mixin.xs {
+      width: 90%;
+    }
 
     input {
       width: 95%;
@@ -23,6 +29,11 @@
       align-items: start;
       justify-content: space-between;
       width: 95%;
+
+      @include mixin.xs {
+        flex-wrap: wrap;
+        height: 100px;
+      }
 
       .btnConnexion {
         width: 150px;
@@ -54,6 +65,10 @@
       justify-content: center;
       align-items: center;
       margin-bottom: 10px;
+
+      @include mixin.xs {
+        flex-wrap: wrap;
+      }
 
       .singUp_text {
         font-size: 14px;

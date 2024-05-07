@@ -10,6 +10,7 @@ export default function HeaderMobile({ setShowMenu }) {
           className=" d-flex flex-column align-items-end fa-solid fa-xmark"
         ></i>
         <a
+          onClick={() => setShowMenu(false)}
           href="https://chevaliers-du-zodiaque-uhc.gitbook.io/chevaliers-du-zodiaque-uhc"
           target="_blank"
           className={`${styles.btnNav}`}

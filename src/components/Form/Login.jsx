@@ -3,8 +3,9 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Login.module.scss";
+import { NavLink } from "react-router-dom";
 
-export default function Login({ handleToggleMdpOublie }) {
+export default function Login() {
   const schema = yup.object({
     email: yup
       .string()
@@ -76,16 +77,16 @@ export default function Login({ handleToggleMdpOublie }) {
           <button className={`btn btn-secondary ${styles.btnConnexion}`}>
             Connexion
           </button>
-          <p onClick={handleToggleMdpOublie} className={`${styles.clickable}`}>
-            Mot de passe oublié ?
-          </p>
+          <p className={`${styles.clickable}`}>Mot de passe oublié ?</p>
         </div>
         <hr />
         <div className={`${styles.bottom_text}`}>
           <p className={`${styles.singUp_text}`}>
             Vous n'avez pas encore de compte ?
           </p>
-          <p className={`${styles.clickable}`}>Inscrivez-vous ici</p>
+          <NavLink to="/register" className={`${styles.clickable}`}>
+            Inscrivez-vous ici
+          </NavLink>
         </div>
       </form>
     </div>
