@@ -1,9 +1,7 @@
 import { useState } from "react";
 import styles from "./App.module.scss";
-import Accueil from "./Pages/Accueil/Accueil";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import Login from "./components/Form/Login";
 import { url } from "./url";
 import { Outlet } from "react-router-dom";
 
@@ -38,7 +36,7 @@ function App() {
     <div className={`d-flex flex-column ${styles.page}`}>
       <Header />
       <div style={{ height: "100px" }}></div>
-      <div className="flex-fill">
+      <div className={`${styles.global}`}>
         <Outlet />
       </div>
       <Footer />

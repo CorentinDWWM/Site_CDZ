@@ -16,16 +16,32 @@ export default function HeaderMobile({ setShowMenu }) {
         >
           Docs
         </a>
-        <NavLink to="/videos" className={`${styles.btnNav}`}>
+        <NavLink
+          onClick={() => setShowMenu(false)}
+          to="/videos"
+          className={`${styles.btnNav}`}
+        >
           Vidéos
         </NavLink>
-        <NavLink to="/boutique" className={`${styles.btnNav}`}>
+        <NavLink
+          onClick={() => setShowMenu(false)}
+          to="/boutique"
+          className={`${styles.btnNav}`}
+        >
           Boutique
         </NavLink>
-        <NavLink to="/contact" className={`${styles.btnNav}`}>
+        <NavLink
+          onClick={() => setShowMenu(false)}
+          to="/contact"
+          className={`${styles.btnNav}`}
+        >
           Contact
         </NavLink>
-        <NavLink to="/login" className={`${styles.btnNav}`}>
+        <NavLink
+          onClick={() => setShowMenu(false)}
+          to="/login"
+          className={`${styles.btnNav}`}
+        >
           Connexion
         </NavLink>
       </ul>
