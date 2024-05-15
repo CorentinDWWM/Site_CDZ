@@ -20,18 +20,6 @@ function App() {
     }
   }
 
-  function handleFormPage() {
-    setFormPage(!formPage);
-  }
-
-  function handleToggleMdpOublie() {
-    setMdpOublie(!mdpOublie);
-  }
-
-  function handleHomePage() {
-    setFormPage(!formPage);
-    setMdpOublie(!mdpOublie);
-  }
   return (
     <div className={`d-flex flex-column ${styles.page}`}>
       <Header />

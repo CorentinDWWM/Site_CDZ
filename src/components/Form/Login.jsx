@@ -54,7 +54,11 @@ export default function Login() {
     }
   }
   return (
-    <div className={`d-flex center flex-fill ${styles.formPage}`}>
+    <div
+      className={`d-flex flex-column align-items-center flex-fill ${styles.formPage}`}
+    >
+      <h1>Connexion</h1>
+      <hr />
       <form onSubmit={handleSubmit(submit)} className={`${styles.loginForm}`}>
         <p>Formulaire de connexion</p>
         <div className="d-flex flex-column mb-10">

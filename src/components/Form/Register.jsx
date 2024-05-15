@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import * as yup from "yup";
-import { appendErrors, useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Register.module.scss";
+import { NavLink, useNavigate } from "react-router-dom";
+import { signup } from "../../apis/users";
+import Modal from "../Modal/Modal";
 
 export default function Register() {
-  const [techFromApi, setTechFromApi] = useState([]);
-  // schéma de validation
+  const [feedback, setFeedback] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
   const schema = yup.object({
     username: yup.string().required("Le champ est obligatoire"),
     email: yup
@@ -28,11 +33,6 @@ export default function Register() {
     rgpd: yup
       .boolean()
       .oneOf([true], "Vous devez accepter les termes et les conditions"),
-    technos: yup.array().of(
-      yup.object({
-        value: yup.string().required("Ce champ ne peut être vide"),
-      })
-    ),
   });
 
   //   valeurs par défaut
@@ -42,7 +42,6 @@ export default function Register() {
     password: "",
     confirmPassword: "",
     rgpd: false,
-    technos: [],
   };
 
   //   méthodes utilisées par useForm et options : resolver fait le lien entre le formulaire et le schéma
@@ -50,7 +49,6 @@ export default function Register() {
     register,
     handleSubmit,
     reset,
-    control,
     formState: { errors },
   } = useForm({
     defaultValues,
@@ -58,44 +56,33 @@ export default function Register() {
     resolver: yupResolver(schema),
   });
 
-  const { fields, append, remove } = useFieldArray({
-    name: "technos",
-    control,
-  });
-
-  function addTechno() {
-    append({
-      value: "",
-    });
-  }
-
-  function deleteTechno(id) {
-    remove(id);
-  }
-
   //   fonction de validation de formulaire
   async function submit(values) {
     console.log(values);
     try {
-      const response = await fetch("http://localhost:5000/api/users/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-      if (response.ok) {
-        const newUser = await response.json();
-        console.log(newUser);
-        setTechFromApi(newUser.technos);
+      const response = await signup(values);
+      console.log(response);
+      setFeedback(response.message);
+      if (response.message !== "Email déjà existant") {
         reset(defaultValues);
       }
+      setShowModal(true);
     } catch (error) {
       console.error(error);
     }
   }
+  function handleCloseModal() {
+    setShowModal(false);
+    if (feedback !== "Email déjà existant") {
+      navigate("/login");
+    }
+  }
   return (
-    <div className={`d-flex center flex-fill ${styles.formPage}`}>
+    <div
+      className={`d-flex flex-column align-items-center flex-fill ${styles.formPage}`}
+    >
+      <h1>Inscription</h1>
+      <hr />
       <form onSubmit={handleSubmit(submit)} className={`${styles.loginForm}`}>
         <p>Formulaire d'inscription</p>
         <div className="d-flex flex-column mb-10">
@@ -153,14 +140,16 @@ export default function Register() {
           )}
         </div>
         <div className="d-flex flex-column mb-10">
-          <label htmlFor="rgpd" className="mb-10">
-            <input
-              {...register("rgpd")}
-              type="checkbox"
-              className="mr-15"
-              id="rgpd"
-            />
-            En soumettant ce formulaire j'accepte ...
+          <label htmlFor="rgpd" className={`mb-10 ${styles.rgpd}`}>
+            <input {...register("rgpd")} type="checkbox" id="rgpd" />
+            <p>
+              J'autorice ce site à conserver mes données personnelles transmises
+              via ce formulaire. Aucune exploitation commerciale ne sera faite
+              des données conservées. Voir notre{" "}
+              <NavLink to="/rgpd">
+                politique de gestion des données personnelles.
+              </NavLink>
+            </p>
           </label>
           {errors.rgpd && <p className="text-error">{errors.rgpd.message}</p>}
         </div>
@@ -172,6 +161,16 @@ export default function Register() {
         </div>
         <hr />
       </form>
+      {showModal && (
+        <Modal onClose={handleCloseModal} feedback={feedback}>
+          <button
+            className="btn btn-reverse-primary"
+            onClick={handleCloseModal}
+          >
+            X
+          </button>
+        </Modal>
+      )}
     </div>
   );
 }
