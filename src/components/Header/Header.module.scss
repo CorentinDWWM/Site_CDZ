@@ -37,13 +37,15 @@
   .docs {
     background-color: var(--pink-1);
     color: black;
-    text-align: center;
-    padding: 10px 20px 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // padding: 10px 20px 10px 20px;
     height: 47px;
     width: 87px;
     &:hover {
       height: 47px;
-      width: 87px;
+      width: 86px;
       border: 1px solid var(--pink-1);
       background-color: var(--primary);
       color: white;

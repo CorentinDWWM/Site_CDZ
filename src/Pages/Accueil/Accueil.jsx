@@ -1,5 +1,6 @@
 import styles from "./Accueil.module.scss";
 import athena from "../../assets/img/Athena.gif";
+import { useState } from "react";
 
 export default function Accueil() {
   return (

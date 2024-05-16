@@ -3,7 +3,7 @@ import { useState } from "react";
 import HeaderMobile from "./components/HeaderMobile";
 import { NavLink } from "react-router-dom";
 
-export default function Header({ handleFormPage, handleHomePage }) {
+export default function Header({ handleFormPage, handleHomePage, logged }) {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -32,9 +32,15 @@ export default function Header({ handleFormPage, handleHomePage }) {
           Contact
         </NavLink>
         <div className={`${styles.trait}`}></div>
-        <NavLink to="/login" className={`${styles.btnNav}`}>
-          Connexion
-        </NavLink>
+        {logged ? (
+          <NavLink to="/account" className={`${styles.btnNav}`}>
+            Mon Compte
+          </NavLink>
+        ) : (
+          <NavLink to="/login" className={`${styles.btnNav}`}>
+            Connexion
+          </NavLink>
+        )}
       </nav>
       <i
         onClick={() => setShowMenu(true)}

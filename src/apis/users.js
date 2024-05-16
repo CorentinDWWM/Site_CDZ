@@ -16,6 +16,16 @@ export async function signup(values) {
   }
 }
 
+export async function verifyMail(values) {
+  try {
+    const response = await fetch(`${BASE_URL}/verifyMail/${values}`);
+    const message = await response.json();
+    return message;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function signin(values) {
   try {
     const response = await fetch(`${BASE_URL}/signin`, {

@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
         element: <RGPD />,
       },
       {
-        path: "verifyMail",
+        path: "/verifyMail/:token",
         element: <VerifyMail />,
       },
     ],

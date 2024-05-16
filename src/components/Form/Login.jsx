@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Login.module.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { signin } from "../../apis/users";
+import Modal from "../Modal/Modal";
 
-export default function Login() {
+export default function Login({ handleLogged }) {
+  const [feedback, setFeedback] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
   const schema = yup.object({
     email: yup
       .string()
       .matches(
-        /^[a-zA-Z0-9]+@[a-zA-Z0-9,-]+\.[a-zA-Z]{2,4}$/,
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9,-]+\.[a-zA-Z]{2,4}$/,
         "Email non valide"
       )
       .required("Le champ est obligatoire"),
@@ -25,6 +30,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues,
@@ -36,21 +42,25 @@ export default function Login() {
   async function submit(values) {
     console.log(values);
     try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-      const user = await response.json();
-      if (response.ok) {
-        console.log(user);
+      const response = await signin(values);
+      if (!response.message) {
+        setFeedback("Connexion réussie");
+        reset(defaultValues);
+        setShowModal(true);
       } else {
-        console.log(user.message);
+        setFeedback(response.message);
+        setShowModal(true);
       }
+      setShowModal(true);
     } catch (error) {
       console.error(error);
+    }
+  }
+  function handleCloseModal() {
+    setShowModal(false);
+    if (feedback === "Connexion réussie") {
+      navigate("/");
+      handleLogged();
     }
   }
   return (
@@ -61,14 +71,14 @@ export default function Login() {
       <hr />
       <form onSubmit={handleSubmit(submit)} className={`${styles.loginForm}`}>
         <p>Formulaire de connexion</p>
-        <div className="d-flex flex-column mb-10">
+        <div className="d-flex flex-column mb-30">
           <label htmlFor="email" className="mb-10">
             Email
           </label>
           <input {...register("email")} type="email" id="email" />
           {errors.email && <p className="text-error">{errors.email.message}</p>}
         </div>
-        <div className="d-flex flex-column mb-10">
+        <div className="d-flex flex-column mb-30">
           <label htmlFor="password" className="mb-10">
             Mot de passe
           </label>
@@ -93,6 +103,13 @@ export default function Login() {
           </NavLink>
         </div>
       </form>
+      {showModal && (
+        <Modal
+          onClose={handleCloseModal}
+          feedback={feedback}
+          handleCloseModal={handleCloseModal}
+        ></Modal>
+      )}
     </div>
   );
 }

@@ -38,12 +38,11 @@
 
 .start {
   margin: 0;
-}
-
-h1 {
-  font-size: 46px;
-  @include mixin.sm {
-    width: 90%;
+  h1 {
+    font-size: 46px;
+    @include mixin.sm {
+      width: 90%;
+    }
   }
 }
 

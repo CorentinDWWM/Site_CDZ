@@ -17,7 +17,7 @@ export default function Register() {
     email: yup
       .string()
       .matches(
-        /^[a-zA-Z0-9]+@[a-zA-Z0-9,-]+\.[a-zA-Z]{2,4}$/,
+        /^[a-zA-Z0-9._-]+@[a-zA-Z0-9,-]+\.[a-zA-Z]{2,4}$/,
         "Email non valide"
       )
       .required("Le champ est obligatoire"),
@@ -58,10 +58,8 @@ export default function Register() {
 
   //   fonction de validation de formulaire
   async function submit(values) {
-    console.log(values);
     try {
       const response = await signup(values);
-      console.log(response);
       setFeedback(response.message);
       if (response.message !== "Email déjà existant") {
         reset(defaultValues);
@@ -85,7 +83,7 @@ export default function Register() {
       <hr />
       <form onSubmit={handleSubmit(submit)} className={`${styles.loginForm}`}>
         <p>Formulaire d'inscription</p>
-        <div className="d-flex flex-column mb-10">
+        <div className="d-flex flex-column mb-30">
           <label htmlFor="username" className="mb-10">
             Pseudo
           </label>
@@ -99,7 +97,7 @@ export default function Register() {
             <p className="text-error">{errors.username.message}</p>
           )}
         </div>
-        <div className="d-flex flex-column mb-10">
+        <div className="d-flex flex-column mb-30">
           <label htmlFor="email" className="mb-10">
             Email
           </label>
@@ -111,7 +109,7 @@ export default function Register() {
           />
           {errors.email && <p className="text-error">{errors.email.message}</p>}
         </div>
-        <div className="d-flex flex-column mb-10">
+        <div className="d-flex flex-column mb-30">
           <label htmlFor="password" className="mb-10">
             Mot de passe
           </label>
@@ -125,7 +123,7 @@ export default function Register() {
             <p className="text-error">{errors.password.message}</p>
           )}
         </div>
-        <div className="d-flex flex-column mb-10">
+        <div className="d-flex flex-column mb-30">
           <label htmlFor="confirmPassword" className="mb-10">
             Confirmation de mot de passe
           </label>
@@ -139,7 +137,7 @@ export default function Register() {
             <p className="text-error">{errors.confirmPassword.message}</p>
           )}
         </div>
-        <div className="d-flex flex-column mb-10">
+        <div className="d-flex flex-column mb-30">
           <label htmlFor="rgpd" className={`mb-10 ${styles.rgpd}`}>
             <input {...register("rgpd")} type="checkbox" id="rgpd" />
             <p>
@@ -162,14 +160,11 @@ export default function Register() {
         <hr />
       </form>
       {showModal && (
-        <Modal onClose={handleCloseModal} feedback={feedback}>
-          <button
-            className="btn btn-reverse-primary"
-            onClick={handleCloseModal}
-          >
-            X
-          </button>
-        </Modal>
+        <Modal
+          onClose={handleCloseModal}
+          feedback={feedback}
+          handleCloseModal={handleCloseModal}
+        ></Modal>
       )}
     </div>
   );

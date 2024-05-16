@@ -11,27 +11,45 @@
 }
 
 .modalContent {
-  background: linear-gradient(to bottom right, #ff385c, #f77470);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: var(--primary);
   color: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  height: 200px;
+  width: 500px;
 }
 
-.modalContent p {
-  margin-bottom: 15px;
+.modalContent .divbtn {
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
 
 .modalContent button {
-  background-color: #fff;
-  color: #ff7e5f;
+  background-color: var(--pink-1);
+  color: black;
   border: none;
-  padding: 8px 16px;
+  width: 50px;
+  height: 50px;
+  // padding: 4px 4px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .modalContent button:hover {
-  background-color: #ff7e5f;
-  color: #fff;
+  width: 49px;
+  height: 50px;
+  border: 1px solid var(--pink-1);
+  background-color: var(--primary);
+  color: white;
+}
+
+.modalContent p {
+  margin-bottom: 15px;
+  width: 80%;
+  text-align: center;
 }

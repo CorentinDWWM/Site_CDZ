@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { verifyMail } from "../../apis/users";
 
 export default function VerifyMail(props) {
+  const { token } = useParams();
   const { startingSeconds = 10 } = props;
   const [secs, setSeconds] = useState(startingSeconds);
+  const [tokenApi, setTokenApi] = useState(token);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +22,13 @@ export default function VerifyMail(props) {
       clearInterval(sampleInterval);
     };
   });
+
+  useEffect(() => {
+    async function sendToken() {
+      await verifyMail(tokenApi);
+    }
+    sendToken();
+  }, [tokenApi]);
 
   return (
     <div className="d-flex flex-column align-items-center mhFull mt-70">
