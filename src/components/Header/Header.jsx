@@ -2,9 +2,12 @@ import styles from "./Header.module.scss";
 import { useState } from "react";
 import HeaderMobile from "./components/HeaderMobile";
 import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
-export default function Header({ handleFormPage, handleHomePage, logged }) {
+export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
+  const { user } = useContext(UserContext);
 
   return (
     <header className={`d-flex align-items-center ${styles.header}`}>
@@ -32,7 +35,7 @@ export default function Header({ handleFormPage, handleHomePage, logged }) {
           Contact
         </NavLink>
         <div className={`${styles.trait}`}></div>
-        {logged ? (
+        {user ? (
           <NavLink to="/account" className={`${styles.btnNav}`}>
             Mon Compte
           </NavLink>

@@ -6,14 +6,20 @@ import styles from "./Login.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 import { signin } from "../../apis/users";
 import Modal from "../Modal/Modal";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
-export default function Login({ handleLogged }) {
+export default function Login() {
   const [feedback, setFeedback] = useState("");
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const { setConnectedUser } = useContext(UserContext);
+  const [user, setUser] = useState();
+
   const schema = yup.object({
     email: yup
       .string()
+      .email()
       .matches(
         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9,-]+\.[a-zA-Z]{2,4}$/,
         "Email non valide"
@@ -44,6 +50,11 @@ export default function Login({ handleLogged }) {
     try {
       const response = await signin(values);
       if (!response.message) {
+        localStorage.setItem("user", JSON.stringify(response));
+        setUser(response.user);
+        setTimeout(() => {
+          setConnectedUser(response.user);
+        }, 2000);
         setFeedback("Connexion réussie");
         reset(defaultValues);
         setShowModal(true);
@@ -59,8 +70,8 @@ export default function Login({ handleLogged }) {
   function handleCloseModal() {
     setShowModal(false);
     if (feedback === "Connexion réussie") {
+      setConnectedUser(user);
       navigate("/");
-      handleLogged();
     }
   }
   return (

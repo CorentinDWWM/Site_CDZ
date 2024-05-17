@@ -4,7 +4,10 @@ import Login from "../src/components/Form/Login";
 import Accueil from "./Pages/Accueil/Accueil";
 import Register from "./components/Form/Register";
 import RGPD from "./components/Form/RGPD/RGPD";
+import Logout from "./components/Logout";
 import VerifyMail from "./components/Form/VerifyMail";
+import UserConnected from "./components/ProtectedRoutes/UserConnected";
+import UserNotConnected from "./components/ProtectedRoutes/UserNotConnected";
 
 export const router = createBrowserRouter([
   {
@@ -17,11 +20,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <UserNotConnected>
+            <Login />
+          </UserNotConnected>
+        ),
       },
       {
         path: "/register",
-        element: <Register />,
+        element: (
+          <UserNotConnected>
+            <Register />
+          </UserNotConnected>
+        ),
+      },
+      {
+        path: "/logout",
+        element: (
+          <UserConnected>
+            <Logout />
+          </UserConnected>
+        ),
       },
       {
         path: "/rgpd",
