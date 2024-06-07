@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
+import { useLoaderData } from "react-router-dom";
 
 export default function UserProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const userConnected = useLoaderData();
+  const [user, setUser] = useState(userConnected);
 
   useEffect(() => {
     const userStorage = JSON.parse(localStorage.getItem("user"));

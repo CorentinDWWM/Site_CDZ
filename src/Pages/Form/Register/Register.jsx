@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Register.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
-import { signup } from "../../apis/users";
-import Modal from "../Modal/Modal";
+import { signup } from "../../../apis/users";
+import Modal from "../../../components/Modal/Modal";
 
 export default function Register() {
   const [feedback, setFeedback] = useState("");

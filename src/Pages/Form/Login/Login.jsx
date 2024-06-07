@@ -4,10 +4,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./Login.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
-import { signin } from "../../apis/users";
-import Modal from "../Modal/Modal";
+import { signin } from "../../../apis/users";
+import Modal from "../../../components/Modal/Modal";
 import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 
 export default function Login() {
   const [feedback, setFeedback] = useState("");
@@ -102,7 +102,9 @@ export default function Login() {
           <button className={`btn btn-secondary ${styles.btnConnexion}`}>
             Connexion
           </button>
-          <p className={`${styles.clickable}`}>Mot de passe oublié ?</p>
+          <NavLink to="/forgotPassword" className={`${styles.clickable}`}>
+            Mot de passe oublié ?
+          </NavLink>
         </div>
         <hr />
         <div className={`${styles.bottom_text}`}>

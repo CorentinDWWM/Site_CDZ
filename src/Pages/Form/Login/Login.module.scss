@@ -1,4 +1,4 @@
-@use "../../assets/styles/mixin" as mixin;
+@use "../../../assets/styles/mixin" as mixin;
 
 .formPage {
   position: relative;
@@ -29,27 +29,6 @@
       outline: none;
     }
 
-    .rgpd {
-      display: flex;
-      margin-bottom: 20px;
-      margin-top: 20px;
-      input {
-        margin: 0;
-        height: 20px;
-        width: 4%;
-        margin-right: 10px;
-        margin-top: 2px;
-      }
-      p {
-        font-size: 16px;
-        margin: 0;
-        width: 90%;
-        a {
-          text-decoration: underline;
-        }
-      }
-    }
-
     .divFin {
       display: flex;
       align-items: start;
@@ -61,7 +40,7 @@
         height: 100px;
       }
 
-      .btnInscription {
+      .btnConnexion {
         width: 150px;
         font-size: 20px;
         &:hover {

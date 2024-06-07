@@ -1,18 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
-import Login from "../src/components/Form/Login";
+import Login from "../src/Pages/Form/Login/Login";
 import Accueil from "./Pages/Accueil/Accueil";
-import Register from "./components/Form/Register";
-import RGPD from "./components/Form/RGPD/RGPD";
-import Logout from "./components/Logout";
-import VerifyMail from "./components/Form/VerifyMail";
+import Register from "./Pages/Form/Register/Register";
+import RGPD from "./Pages/Form/RGPD/RGPD";
+import Logout from "./Pages/Logout";
+import VerifyMail from "./Pages/Form/VerifyMail";
 import UserConnected from "./components/ProtectedRoutes/UserConnected";
 import UserNotConnected from "./components/ProtectedRoutes/UserNotConnected";
+import ForgotPassword from "./Pages/Form/Password/ForgotPassword";
+import MyAccount from "./Pages/Account/MyAccount";
+import Contact from "./Pages/Contact/Contact";
+import { userLoader } from "./loader/userLoader";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    loader: userLoader,
     children: [
       {
         path: "/",
@@ -49,6 +54,30 @@ export const router = createBrowserRouter([
       {
         path: "/verifyMail/:token",
         element: <VerifyMail />,
+      },
+      {
+        path: "/forgotPassword",
+        element: (
+          <UserNotConnected>
+            <ForgotPassword />
+          </UserNotConnected>
+        ),
+      },
+      {
+        path: "/account/:_id",
+        element: (
+          <UserConnected>
+            <MyAccount />
+          </UserConnected>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+          <UserConnected>
+            <Contact />
+          </UserConnected>
+        ),
       },
     ],
   },

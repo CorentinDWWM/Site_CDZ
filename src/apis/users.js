@@ -41,3 +41,46 @@ export async function signin(values) {
     console.error(error);
   }
 }
+
+export async function forgotPassword(values) {
+  console.log(values);
+  try {
+    const response = await fetch(`${BASE_URL}/forgotPassword`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: values }),
+    });
+    const body = await response.json();
+    return body;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function resetPassword(values) {
+  console.log(values);
+  try {
+    const response = await fetch(`${BASE_URL}/resetPassword`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+    const body = await response.json();
+    return body;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function getUserConnected() {
+  if (localStorage.getItem("user")) {
+    const userStorage = JSON.parse(localStorage.getItem("user"));
+    return userStorage.user;
+  } else {
+    return null;
+  }
+}

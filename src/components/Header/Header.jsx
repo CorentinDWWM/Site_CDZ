@@ -8,6 +8,8 @@ import { UserContext } from "../../context/UserContext";
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const { user } = useContext(UserContext);
+  // const storageUser = localStorage.getItem("user");
+  // console.log(storageUser);
 
   return (
     <header className={`d-flex align-items-center ${styles.header}`}>
@@ -36,9 +38,18 @@ export default function Header() {
         </NavLink>
         <div className={`${styles.trait}`}></div>
         {user ? (
-          <NavLink to="/account" className={`${styles.btnNav}`}>
-            Mon Compte
-          </NavLink>
+          user.username === "admin" ? (
+            <NavLink to="/admin" className={`${styles.btnNav}`}>
+              Admin
+            </NavLink>
+          ) : (
+            <NavLink
+              to={`/account/${user._id}`}
+              className={`${styles.btnNav} ${styles.btnNavAccount}`}
+            >
+              Mon Compte
+            </NavLink>
+          )
         ) : (
           <NavLink to="/login" className={`${styles.btnNav}`}>
             Connexion
