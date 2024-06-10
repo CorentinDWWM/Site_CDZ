@@ -76,11 +76,12 @@ export default function Register() {
     }
   }
   return (
-    <div
-      className={`d-flex flex-column align-items-center flex-fill ${styles.formPage}`}
-    >
+    // <div
+    //   className={`d-flex flex-column align-items-center flex-fill ${styles.formPage}`}
+    // >
+    <>
       <h1>Inscription</h1>
-      <hr />
+      <hr className={`${styles.separation}`} />
       <form onSubmit={handleSubmit(submit)} className={`${styles.loginForm}`}>
         <p>Formulaire d'inscription</p>
         <div className="d-flex flex-column mb-30">
@@ -155,7 +156,9 @@ export default function Register() {
           <button className={`btn btn-secondary ${styles.btnInscription}`}>
             Inscription
           </button>
-          <p className={`${styles.clickable}`}>Mot de passe oublié ?</p>
+          <NavLink to="/login" className={`${styles.clickable}`}>
+            Déjà inscrit ?
+          </NavLink>
         </div>
         <hr />
       </form>
@@ -166,6 +169,7 @@ export default function Register() {
           handleCloseModal={handleCloseModal}
         ></Modal>
       )}
-    </div>
+      {/* </div> */}
+    </>
   );
 }

@@ -1,9 +1,11 @@
 import React from "react";
+import styles from "./Contact.module.scss";
 
 export default function Contact() {
   return (
-    <div>
-      <h2>Contact</h2>
-    </div>
+    <>
+      <h1 className="mt-70">Contact</h1>
+      <hr className={`${styles.separation}`} />
+    </>
   );
 }

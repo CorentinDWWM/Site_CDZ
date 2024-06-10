@@ -10,6 +10,7 @@
   justify-content: space-between;
   max-height: 500px;
   margin-top: 60px;
+  margin-bottom: 30px;
   @include mixin.lg-lt {
     justify-content: center;
     flex-wrap: wrap;
@@ -40,6 +41,7 @@
   margin: 0;
   h1 {
     font-size: 46px;
+    margin-top: 20px;
     @include mixin.sm {
       width: 90%;
     }
@@ -64,7 +66,7 @@ span {
   }
 }
 
-hr {
+.trait {
   border: none;
   border-top: 2px solid #000;
   height: 5px;

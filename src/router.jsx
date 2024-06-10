@@ -9,9 +9,11 @@ import VerifyMail from "./Pages/Form/VerifyMail";
 import UserConnected from "./components/ProtectedRoutes/UserConnected";
 import UserNotConnected from "./components/ProtectedRoutes/UserNotConnected";
 import ForgotPassword from "./Pages/Form/Password/ForgotPassword";
+import ResetPassword from "./Pages/Form/Password/ResetPassword";
 import MyAccount from "./Pages/Account/MyAccount";
 import Contact from "./Pages/Contact/Contact";
 import { userLoader } from "./loader/userLoader";
+import Videos from "./Pages/Videos/Videos";
 
 export const router = createBrowserRouter([
   {
@@ -24,11 +26,15 @@ export const router = createBrowserRouter([
         element: <Accueil />,
       },
       {
-        path: "/login",
+        path: "/videos",
+        element: <Videos />,
+      },
+      {
+        path: "/contact",
         element: (
-          <UserNotConnected>
-            <Login />
-          </UserNotConnected>
+          <UserConnected>
+            <Contact />
+          </UserConnected>
         ),
       },
       {
@@ -40,26 +46,34 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/logout",
-        element: (
-          <UserConnected>
-            <Logout />
-          </UserConnected>
-        ),
+        path: "/verifyMail/:token",
+        element: <VerifyMail />,
       },
       {
         path: "/rgpd",
         element: <RGPD />,
       },
       {
-        path: "/verifyMail/:token",
-        element: <VerifyMail />,
+        path: "/login",
+        element: (
+          <UserNotConnected>
+            <Login />
+          </UserNotConnected>
+        ),
       },
       {
         path: "/forgotPassword",
         element: (
           <UserNotConnected>
             <ForgotPassword />
+          </UserNotConnected>
+        ),
+      },
+      {
+        path: "/resetPassword/:email",
+        element: (
+          <UserNotConnected>
+            <ResetPassword />
           </UserNotConnected>
         ),
       },
@@ -72,10 +86,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/contact",
+        path: "/logout",
         element: (
           <UserConnected>
-            <Contact />
+            <Logout />
           </UserConnected>
         ),
       },

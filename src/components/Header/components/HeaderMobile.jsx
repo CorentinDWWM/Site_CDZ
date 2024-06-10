@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
 import styles from "./HeaderMobile.module.scss";
+import { useContext } from "react";
+import { UserContext } from "../../../context/UserContext";
 
 export default function HeaderMobile({ setShowMenu }) {
+  const { user } = useContext(UserContext);
   return (
     <>
       <ul className={`d-flex flex-column p-20 ${styles.container}`}>
@@ -38,13 +41,30 @@ export default function HeaderMobile({ setShowMenu }) {
         >
           Contact
         </NavLink>
-        <NavLink
-          onClick={() => setShowMenu(false)}
-          to="/login"
-          className={`${styles.btnNav}`}
-        >
-          Connexion
-        </NavLink>
+        {user ? (
+          <>
+            {user.username === "admin" ? (
+              <NavLink to="/admin" className={`${styles.btnNav}`}>
+                Admin
+              </NavLink>
+            ) : (
+              <NavLink
+                to={`/account/${user._id}`}
+                className={`${styles.btnNav} ${styles.btnNavAccount}`}
+              >
+                Mon Compte
+              </NavLink>
+            )}
+            <div className={`${styles.trait}`}></div>
+            <NavLink to="/logout" className={`${styles.btnNav}`}>
+              Déconnexion
+            </NavLink>
+          </>
+        ) : (
+          <NavLink to="/login" className={`${styles.btnNav}`}>
+            Connexion
+          </NavLink>
+        )}
       </ul>
     </>
   );

@@ -48,7 +48,7 @@ export default function Accueil() {
         </div>
         <button className="btn btn-primary">Acheter des parties</button>
       </section>
-      <hr />
+      <hr className={`${styles.trait}`} />
       <section
         className={`d-flex flex-column align-items-center ${styles.videos}`}
       >

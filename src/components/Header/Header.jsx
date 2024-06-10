@@ -38,18 +38,24 @@ export default function Header() {
         </NavLink>
         <div className={`${styles.trait}`}></div>
         {user ? (
-          user.username === "admin" ? (
-            <NavLink to="/admin" className={`${styles.btnNav}`}>
-              Admin
+          <>
+            {user.username === "admin" ? (
+              <NavLink to="/admin" className={`${styles.btnNav}`}>
+                Admin
+              </NavLink>
+            ) : (
+              <NavLink
+                to={`/account/${user._id}`}
+                className={`${styles.btnNav} ${styles.btnNavAccount}`}
+              >
+                Mon Compte
+              </NavLink>
+            )}
+            <div className={`${styles.trait}`}></div>
+            <NavLink to="/logout" className={`${styles.btnNav}`}>
+              Déconnexion
             </NavLink>
-          ) : (
-            <NavLink
-              to={`/account/${user._id}`}
-              className={`${styles.btnNav} ${styles.btnNavAccount}`}
-            >
-              Mon Compte
-            </NavLink>
-          )
+          </>
         ) : (
           <NavLink to="/login" className={`${styles.btnNav}`}>
             Connexion

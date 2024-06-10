@@ -7,7 +7,7 @@ import UserProvider from "./components/Providers/UserProvider";
 function App() {
   return (
     <>
-      <div className={`d-flex flex-column ${styles.page}`}>
+      <div className={`d-flex flex-column`}>
         <UserProvider>
           <Header />
           <div style={{ height: "100px" }}></div>

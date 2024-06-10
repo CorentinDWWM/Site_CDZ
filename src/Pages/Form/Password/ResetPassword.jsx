@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { resetPassword, signup } from "../../../apis/users";
 import * as yup from "yup";
+import styles from "./ResetPassword.module.scss";
+import Modal from "../../../components/Modal/Modal";
 
 export default function ResetPassword() {
   const { email } = useParams();
   const navigate = useNavigate();
-  console.log(email);
+  const [feedback, setFeedback] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const schema = yup.object({
     password: yup
       .string()
@@ -51,9 +54,14 @@ export default function ResetPassword() {
   }
 
   return (
-    <div className="d-flex center flex-column flex-fill">
-      <form onSubmit={handleSubmit(submit)}>
+    <>
+      <h1 className="ta-center">
+        Récupérer <br /> de mot de passe
+      </h1>
+      <hr className={`${styles.separation}`} />
+      <form onSubmit={handleSubmit(submit)} className={`${styles.loginForm}`}>
         <div className="d-flex flex-column mb-10">
+          <p>Récupérer votre mot de passe</p>
           <label htmlFor="password" className="mb-10">
             Nouveau mot de passe
           </label>
@@ -61,7 +69,7 @@ export default function ResetPassword() {
             {...register("password")}
             type="password"
             id="password"
-            className="mb-10"
+            className="mb-20"
           />
           {errors.password && (
             <p className="text-error">{errors.password.message}</p>
@@ -75,14 +83,24 @@ export default function ResetPassword() {
             {...register("confirmPassword")}
             type="password"
             id="confirmPassword"
-            className="mb-10"
+            className="mb-20"
           />
           {errors.confirmPassword && (
             <p className="text-error">{errors.confirmPassword.message}</p>
           )}
         </div>
-        <button className="btn btn-primary">Submit</button>
+        <button className={`btn btn-secondary ${styles.btnConnexion}`}>
+          Changer le mot de passe
+        </button>
+        <hr />
       </form>
-    </div>
+      {showModal && (
+        <Modal
+          onClose={handleCloseModal}
+          feedback={feedback}
+          handleCloseModal={handleCloseModal}
+        ></Modal>
+      )}
+    </>
   );
 }

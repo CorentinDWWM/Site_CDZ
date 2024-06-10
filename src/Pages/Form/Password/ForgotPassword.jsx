@@ -53,12 +53,10 @@ export default function ForgotPassword() {
   }
 
   return (
-    <div
-      className={`d-flex flex-column align-items-center flex-fill ${styles.formPage}`}
-    >
+    <>
       <h1>Mot de passe oublié</h1>
-      <hr />
-      <div className="d-flex flex-column center flex-fill">
+      <hr className={`${styles.separation}`} />
+      <div className="d-flex flex-column center">
         <form onSubmit={handleSubmit(submit)} className={`${styles.loginForm}`}>
           <p>Mot de passe oublié ?</p>
           <div className="d-flex flex-column mb-20">
@@ -83,6 +81,6 @@ export default function ForgotPassword() {
           handleCloseModal={handleCloseModal}
         ></Modal>
       )}
-    </div>
+    </>
   );
 }
