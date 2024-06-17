@@ -32,6 +32,9 @@
     margin-right: 30px;
     color: white;
     font-size: 24px;
+    @include mixin.lg-lt {
+      margin-right: 0;
+    }
   }
 
   .docs {
@@ -93,8 +96,4 @@
   @include mixin.lg-lt {
     margin-right: 40px;
   }
-}
-
-.btnNavAccount {
-  width: 140px;
 }

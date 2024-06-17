@@ -4,6 +4,7 @@ import HeaderMobile from "./components/HeaderMobile";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
+import Menu from "./Menu/Menu";
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
@@ -37,7 +38,7 @@ export default function Header() {
           Contact
         </NavLink>
         <div className={`${styles.trait}`}></div>
-        {user ? (
+        {/* {user ? (
           <>
             {user.username === "admin" ? (
               <NavLink to="/admin" className={`${styles.btnNav}`}>
@@ -60,7 +61,8 @@ export default function Header() {
           <NavLink to="/login" className={`${styles.btnNav}`}>
             Connexion
           </NavLink>
-        )}
+        )} */}
+        <Menu />
       </nav>
       <i
         onClick={() => setShowMenu(true)}

@@ -1,3 +1,5 @@
+@use "../../assets/styles/mixin" as mixin;
+
 .separation {
   border: none;
   border-top: 2px solid #000;
@@ -5,4 +7,152 @@
   margin-top: 60px;
   margin-bottom: 40px;
   width: 50%;
+}
+
+.box {
+  background-color: var(--primary);
+  color: white;
+  width: 60%;
+  height: 700px;
+  margin-top: 50px;
+
+  @include mixin.sm {
+    width: 80%;
+  }
+
+  .contact_text {
+    width: 90%;
+    font-size: 32px;
+    text-align: center;
+    margin: 100px 0px;
+
+    @include mixin.lg {
+      width: 70%;
+    }
+
+    @include mixin.md {
+      font-size: 28px;
+    }
+
+    @include mixin.sm {
+      width: 80%;
+    }
+  }
+
+  .btnNav {
+    padding: 10px;
+    border: none;
+    margin: 10px;
+    background-color: var(--pink-1);
+    width: 45%;
+    height: 90px;
+    color: black;
+    cursor: pointer;
+    &:hover {
+      background-color: var(--primary);
+      border: 1px solid var(--pink-1);
+      color: white;
+      .icon {
+        color: white;
+      }
+    }
+
+    @include mixin.lg-lt {
+      width: 55%;
+    }
+
+    @include mixin.md {
+      width: 40%;
+      height: 60px;
+    }
+
+    .boxBtn {
+      width: 60%;
+    }
+
+    .rs_name {
+      font-size: 32px;
+      margin: 0;
+
+      @include mixin.md {
+        font-size: 24px;
+      }
+
+      @include mixin.sm-lgt {
+        display: none;
+      }
+    }
+
+    .icon {
+      font-size: 48px;
+      color: var(--primary);
+
+      @include mixin.md {
+        margin-top: 5px;
+        font-size: 20px;
+      }
+
+      @include mixin.sm-lg {
+        margin: 0;
+        font-size: 24px;
+      }
+    }
+  }
+
+  // .btnInsta {
+  //   margin-top: 50px;
+  //   padding: 10px;
+  //   border: none;
+  //   background-color: var(--pink-1);
+  //   width: 45%;
+  //   font-size: 24px;
+  //   height: 90px;
+  //   color: black;
+  //   cursor: pointer;
+  //   &:hover {
+  //     background-color: var(--primary);
+  //     border: 1px solid var(--pink-1);
+  //     color: white;
+  //     .icon {
+  //       color: white;
+  //     }
+  //   }
+
+  //   @include mixin.lg-lt {
+  //     width: 35%;
+  //   }
+
+  //   @include mixin.md {
+  //     width: 40%;
+  //   }
+
+  //   .rs_name {
+  //     font-size: 32px;
+
+  //     @include mixin.md-lt {
+  //       font-size: 28px;
+  //     }
+
+  //     @include mixin.sm-lg {
+  //       display: none;
+  //     }
+  //   }
+
+  //   .icon {
+  //     font-size: 48px;
+  //     color: var(--primary);
+
+  //     @include mixin.md {
+  //       font-size: 20px;
+  //     }
+
+  //     @include mixin.sm-lg {
+  //       font-size: 28px;
+  //     }
+
+  //     @include mixin.sm-lg {
+  //       font-size: 24px;
+  //     }
+  //   }
+  // }
 }
