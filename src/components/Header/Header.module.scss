@@ -45,14 +45,18 @@
     align-items: center;
     // padding: 10px 20px 10px 20px;
     height: 47px;
-    width: 87px;
+    width: 100px;
     &:hover {
       height: 47px;
-      width: 86px;
+      width: 99px;
       border: 1px solid var(--pink-1);
       background-color: var(--primary);
       color: white;
     }
+
+    // a:hover {
+    //   color: white;
+    // }
   }
 
   .trait {

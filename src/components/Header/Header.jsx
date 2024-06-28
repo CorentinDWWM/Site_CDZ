@@ -16,15 +16,15 @@ export default function Header() {
     <header className={`d-flex align-items-center ${styles.header}`}>
       <NavLink to="/" className={`${styles.logo}`}></NavLink>
       <nav className={`d-flex jc-around align-items-center ${styles.navBar}`}>
-        <p className={`${styles.docs}`}>
-          <a
-            href="https://chevaliers-du-zodiaque-uhc.gitbook.io/chevaliers-du-zodiaque-uhc"
-            target="_blank"
-            className="link"
-          >
-            Docs
-          </a>
-        </p>
+        {/* <p className={`${styles.docs}`}> */}
+        <a
+          href="https://chevaliers-du-zodiaque-uhc.gitbook.io/chevaliers-du-zodiaque-uhc"
+          target="_blank"
+          className={`link ${styles.docs}`}
+        >
+          Docs
+        </a>
+        {/* </p> */}
         <div className={`${styles.trait}`}></div>
         <NavLink to="/videos" className={`${styles.btnNav}`}>
           Vidéos

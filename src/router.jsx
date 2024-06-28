@@ -14,6 +14,8 @@ import MyAccount from "./Pages/Account/MyAccount";
 import Contact from "./Pages/Contact/Contact";
 import { userLoader } from "./loader/userLoader";
 import Videos from "./Pages/Videos/Videos";
+import Boutique from "./Pages/Boutique/Boutique";
+import Produit from "./Pages/Boutique/Produit/Produit";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +31,18 @@ export const router = createBrowserRouter([
         path: "/videos",
         element: <Videos />,
       },
+      {
+        path: "/boutique",
+        element: <Boutique />,
+      },
+      {
+        path: "/boutique/produit",
+        element: <Produit />,
+      },
+      // {
+      //   path: "/boutique/produit/2",
+      //   element: <Produit />,
+      // },
       {
         path: "/contact",
         element: (
